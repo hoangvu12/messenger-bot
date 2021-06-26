@@ -11,12 +11,11 @@ module.exports = {
     // Access API with Global.client
     // Do something here
     const API = Global.client;
-    let collector = null;
+    let collector = new MessageCollector(message);
 
     let keyword = args.join(" ");
 
     if (!keyword) {
-      collector = new MessageCollector(message);
       API.sendMessage("Nhập từ khóa", message.threadID);
 
       keyword = await collector.awaitMessage();

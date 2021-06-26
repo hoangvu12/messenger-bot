@@ -1,6 +1,8 @@
 const fs = require("fs");
 const login = require("facebook-chat-api");
 const readline = require("readline");
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 var rl = readline.createInterface({
   input: process.stdin,

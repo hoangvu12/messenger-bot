@@ -6,20 +6,7 @@ class MessageCollector {
 
   constructor(event, options = {}) {
     this.event = event;
-
-    const { timeout = MINUTE * 5 } = options;
-
-    this.user = {
-      event: new EventEmitter(),
-      messageCount: 0,
-      opts: { timeout },
-      threadID: this.event.threadID,
-      senderID: this.event.senderID,
-    };
-
-    this.user.timeout = this.setTimeOut(this.user.opts.timeout);
-
-    MessageCollector.users.push(this.user);
+    this.options = options;
   }
 
   setTimeOut(timeout) {
@@ -67,6 +54,19 @@ class MessageCollector {
   awaitMessage() {
     const self = this;
 
+    const { timeout = MINUTE * 5 } = this.options;
+
+    this.user = {
+      event: new EventEmitter(),
+      messageCount: 0,
+      opts: { timeout },
+      threadID: this.event.threadID,
+      senderID: this.event.senderID,
+    };
+
+    this.user.timeout = this.setTimeOut(this.user.opts.timeout);
+
+    MessageCollector.users.push(this.user);
     return new Promise((resolve, reject) => {
       self.user.event.on("collect", ({ event }) => {
         self.end("max");
