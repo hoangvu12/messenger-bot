@@ -22,6 +22,7 @@ login(
     }
 
     api.setOptions({
+      autoMarkRead: true,
       selfListen: true,
       logLevel: "silent",
       updatePresence: false,
