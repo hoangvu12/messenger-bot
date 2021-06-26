@@ -14,6 +14,8 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "facebook-chat-api": "^1.8.0",
-    "require-dir": "^1.2.0"
+    "require-dir": "^1.2.0",
+    "usetube": "^2.1.0",
+    "ytdl-core": "^4.8.3"
   }
 }
