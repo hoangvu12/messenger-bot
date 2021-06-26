@@ -11,19 +11,16 @@ module.exports = {
     // Access API with Global.client
     // Do something here
     const API = Global.client;
-    const collector = new MessageCollector(message);
+    let collector = null;
 
     let keyword = args.join(" ");
 
     if (!keyword) {
+      collector = new MessageCollector(message);
       API.sendMessage("Nhập từ khóa", message.threadID);
 
       keyword = await collector.awaitMessage();
-
-      console.log(keyword);
     } else if (ytdl.validateURL(keyword) || ytdl.validateID(keyword)) {
-      console.log(keyword);
-
       const videoId = ytdl.getVideoID(keyword);
       const {
         player_response: { videoDetails },
@@ -34,8 +31,6 @@ module.exports = {
         message
       );
     }
-
-    console.log(keyword);
 
     const { videos } = await usetube.searchVideo(keyword);
 

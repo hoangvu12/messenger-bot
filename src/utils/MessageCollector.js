@@ -33,9 +33,7 @@ class MessageCollector {
 
     this.user.event.removeAllListeners();
 
-    if (reason === "max") {
-      MessageCollector.removeUser(this.user.senderID);
-    }
+    MessageCollector.removeUser(this.user.senderID);
   }
 
   static send({ event, api }) {
@@ -62,12 +60,16 @@ class MessageCollector {
     );
 
     MessageCollector.users = [...filteredUsers];
+
+    console.log(filteredUsers);
   }
 
   awaitMessage() {
+    const self = this;
+
     return new Promise((resolve, reject) => {
-      this.user.event.on("collect", ({ event }) => {
-        this.end("max");
+      self.user.event.on("collect", ({ event }) => {
+        self.end("max");
         resolve(event.body);
       });
     });
