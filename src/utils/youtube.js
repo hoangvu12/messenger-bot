@@ -12,8 +12,13 @@ const downloadAndSendMessage = (video, message, type) => {
   if (type === "audio") fileType = "mp3";
   else fileType = "mp4";
 
+  const directory = path.resolve(__dirname, "../files");
   const filePath = path.resolve(__dirname, `../files/${video.id}.${fileType}`);
   const stream = ytdl(video.id);
+
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory);
+  }
 
   stream.pipe(fs.createWriteStream(filePath));
 
