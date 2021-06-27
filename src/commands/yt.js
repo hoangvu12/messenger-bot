@@ -26,8 +26,7 @@ module.exports = {
 
       return downloadAndSendMessage(
         { id: videoId, title: videoDetails.title },
-        message,
-        "audio"
+        message
       );
     }
 
@@ -40,7 +39,8 @@ module.exports = {
 
     downloadAndSendMessage(
       { id: chosenVideo.id, title: chosenVideo.original_title },
-      message
+      message,
+      "video"
     );
   },
 };
