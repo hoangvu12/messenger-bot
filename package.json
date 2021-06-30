@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "akaneko": "^5.1.2",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "facebook-chat-api": "^1.8.0",
